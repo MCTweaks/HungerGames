@@ -72,7 +72,10 @@ public class HG extends JavaPlugin {
             Util.warning("HungerGames does not support your version!");
             Util.warning("Only versions 1.13+ are supported");
             Bukkit.getPluginManager().disablePlugin(this);
+            return;
         }
+
+        loadPlugin(true);
     }
 
     public void loadPlugin(boolean load) {
