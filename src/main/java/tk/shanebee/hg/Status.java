@@ -37,7 +37,7 @@ public enum Status {
      */
     NOTREADY,
     /**
-     * Game is starting to run
+     * Game is starting to run (Game just started)
      */
     BEGINNING,
     /**
