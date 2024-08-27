@@ -9,3 +9,4 @@ public interface ScoreboardInterface {
     void updateBoard();
 
 }
+

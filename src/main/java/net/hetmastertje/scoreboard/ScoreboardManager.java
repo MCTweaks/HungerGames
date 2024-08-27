@@ -37,7 +37,6 @@ public class ScoreboardManager {
     private final Team team;
 
     public static final ArrayList<UUID> participants = new ArrayList<>();
-
     public ScoreboardManager(Game game) {
         this.game = game;
         this.plugin = game.plugin;
@@ -46,6 +45,7 @@ public class ScoreboardManager {
         board.setDisplaySlot(DisplaySlot.SIDEBAR);
         board.setDisplayName(" ");
 
+        // Register the game-team with a non-numeric name
         team = scoreboard.registerNewTeam("game-team");
 
         if (Config.hideNametags) {
@@ -81,6 +81,7 @@ public class ScoreboardManager {
         addPlayer(player);
     }
 
+
     /**
      * Updates the scoreboard based on the current game status.
      */
@@ -100,7 +101,9 @@ public class ScoreboardManager {
                 scoreboard = new DefaultBoard(game, board);
                 break;
         }
+
         scoreboard.updateBoard();
+
     }
 
     @Override
@@ -113,6 +116,7 @@ public class ScoreboardManager {
             participants.forEach(uuid -> game.gameArenaData.updateBoards());
         }, 20L, 20L);
     }
+
 
     public static void removePlayer(Player player) {
         participants.remove(player.getUniqueId());
