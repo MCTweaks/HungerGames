@@ -21,12 +21,12 @@ public class RunningBoard extends AbstractScoreboard {
         String alive = "  " + lang.players_alive_num.replace("<num>", String.valueOf(game.getGamePlayerData().getPlayers().size()));
 
         setTitle(lang.scoreboard_title);
-        setLine(15, " ");
-        setLine(14, lang.scoreboard_arena);
-        setLine(13, "  &e" + game.getGameArenaData().getName());
-        setLine(12, " ");
-        setLine(11, lang.players_alive);
-        setLine(10, alive);
-        setLine(9, "Running");
+        setScoreOrLine(15, " ");
+        setScoreOrLine(14, lang.scoreboard_arena);
+        setScoreOrLine(13, "  &e" + game.getGameArenaData().getName());
+        setScoreOrLine(12, " ");
+        setScoreOrLine(11, lang.players_alive);
+        setScoreOrLine(10, alive);
+        setScoreOrLine(9, "Running");
     }
 }

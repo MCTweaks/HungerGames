@@ -26,6 +26,6 @@ public class DefaultBoard extends AbstractScoreboard {
         String alive = "  " + lang.players_alive_num.replace("<num>", String.valueOf(game.getGamePlayerData().getPlayers().size()));
 
         setTitle(lang.scoreboard_title);
-        setLine(15, "Royale Tourny");
+        setScoreOrLine(15, "Royale Tourny");
     }
 }
