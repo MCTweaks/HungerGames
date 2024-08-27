@@ -1,5 +1,8 @@
-package tk.shanebee.hg.game;
+package net.hetmastertje.scoreboard;
 
+import net.hetmastertje.scoreboard.boards.CountdownBoard;
+import net.hetmastertje.scoreboard.boards.DefaultBoard;
+import net.hetmastertje.scoreboard.boards.RunningBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,16 +14,15 @@ import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
 import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Config;
-import tk.shanebee.hg.data.Language;
+import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
-import tk.shanebee.hg.util.Validate;
 
-import java.util.Objects;
+import java.util.*;
 
 /**
- * Represents a team based scoreboard for a game
+ * Manages the scoreboard for the game, handling teams and updating the scoreboard based on game status.
  */
-public class Board {
+public class ScoreboardManager {
 
     private static final ChatColor[] COLORS;
 
@@ -32,11 +34,11 @@ public class Board {
     private final Main plugin;
     private final Scoreboard scoreboard;
     private final Objective board;
-    private final Team[] lines = new Team[15];
     private final Team team;
-    private final String[] entries = new String[]{"&1&r", "&2&r", "&3&r", "&4&r", "&5&r", "&6&r", "&7&r", "&8&r", "&9&r", "&0&r", "&a&r", "&b&r", "&c&r", "&d&r", "&e&r"};
 
-    public Board(Game game) {
+    public static final ArrayList<UUID> participants = new ArrayList<>();
+
+    public ScoreboardManager(Game game) {
         this.game = game;
         this.plugin = game.plugin;
         scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
@@ -44,21 +46,16 @@ public class Board {
         board.setDisplaySlot(DisplaySlot.SIDEBAR);
         board.setDisplayName(" ");
 
-        for (int i = 0; i < 15; i++) {
-            lines[i] = scoreboard.registerNewTeam("line" + (i + 1));
-        }
-
-        for (int i = 0; i < 15; i++) {
-            lines[i].addEntry(Util.getColString(entries[i]));
-        }
         team = scoreboard.registerNewTeam("game-team");
 
         if (Config.hideNametags) {
             team.setOption(Option.NAME_TAG_VISIBILITY, OptionStatus.NEVER);
         }
+
+        startScoreboard();
     }
 
-    Team registerTeam(String name) {
+    public Team registerTeam(String name) {
         Team team = scoreboard.registerNewTeam(name);
         String prefix = Util.getColString(plugin.getLang().team_prefix.replace("<name>", name) + " ");
         team.setPrefix(prefix);
@@ -74,62 +71,36 @@ public class Board {
     }
 
     /**
-     * Add a player to this scoreboard
+     * Adds a player to this scoreboard.
      *
      * @param player Player to add
      */
     public void setBoard(Player player) {
         player.setScoreboard(scoreboard);
         team.addEntry(player.getName());
+        addPlayer(player);
     }
 
     /**
-     * Set the title of this scoreboard
-     *
-     * @param title Title to set
-     */
-    public void setTitle(String title) {
-        board.setDisplayName(Util.getColString(title));
-    }
-
-    /**
-     * Set a specific line for this scoreboard
-     * <p>Lines 1 - 15</p>
-     *
-     * @param line Line to set (1 - 15)
-     * @param text Text to put in line
-     */
-    public void setLine(int line, String text) {
-        Validate.isBetween(line, 1, 15);
-        Team t = lines[line - 1];
-        if (ChatColor.stripColor(text).length() > (128 / 2)) {
-            String prefix = Util.getColString(text.substring(0, (128 / 2)));
-            t.setPrefix(prefix);
-            String lastColor = ChatColor.getLastColors(prefix);
-            int splitMax = Math.min(text.length(), 128 - lastColor.length());
-            t.setSuffix(Util.getColString(lastColor + text.substring((128 / 2), splitMax)));
-        } else {
-            t.setPrefix(Util.getColString(text));
-            t.setSuffix("");
-        }
-        board.getScore(Util.getColString(entries[line - 1])).setScore(line);
-    }
-
-    /**
-     * Update this scoreboard
+     * Updates the scoreboard based on the current game status.
      */
     public void updateBoard() {
-        Language lang = plugin.getLang();
-        String alive = "  " + lang.players_alive_num.replace("<num>", String.valueOf(game.getGamePlayerData().getPlayers().size()));
+        ScoreboardInterface scoreboard;
+//        System.out.println(game.getGameArenaData().getStatus());
 
-        setTitle(lang.scoreboard_title);
-        setLine(15, " ");
-        setLine(14, lang.scoreboard_arena);
-        setLine(13, "  &e" + game.getGameArenaData().getName());
-        setLine(12, " ");
-        setLine(11, lang.players_alive);
-        setLine(10, alive);
-        setLine(9, " ");
+        switch (game.getGameArenaData().getStatus()) {
+            case RUNNING:
+                scoreboard = new RunningBoard(game, board);
+                break;
+            case COUNTDOWN:
+                scoreboard = new CountdownBoard(game, board);
+                break;
+            // Add other cases for different statuses
+            default:
+                scoreboard = new DefaultBoard(game, board);
+                break;
+        }
+        scoreboard.updateBoard();
     }
 
     @Override
@@ -137,4 +108,19 @@ public class Board {
         return "Board{game=" + game + '}';
     }
 
+    private void startScoreboard() {
+        Bukkit.getScheduler().runTaskTimer(Main.getPlugin(), () -> {
+            participants.forEach(uuid -> game.gameArenaData.updateBoards());
+        }, 20L, 20L);
+    }
+
+    public static void removePlayer(Player player) {
+        participants.remove(player.getUniqueId());
+    }
+
+    public static void addPlayer(Player player) {
+        if (!participants.contains(player.getUniqueId())) {
+            participants.add(player.getUniqueId());
+        }
+    }
 }

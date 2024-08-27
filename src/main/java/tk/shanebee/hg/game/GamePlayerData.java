@@ -36,7 +36,7 @@ public class GamePlayerData extends Data {
     final List<UUID> allPlayers = new ArrayList<>();
     // Data lists
     final Map<Player, Integer> kills = new HashMap<>();
-    final Map<String, Team> teams = new HashMap<>();
+    public final Map<String, Team> teams = new HashMap<>();
     private final PlayerManager playerManager;
     private final SpectatorGUI spectatorGUI;
 

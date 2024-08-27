@@ -1,5 +1,7 @@
 package tk.shanebee.hg.game;
 
+
+import net.hetmastertje.scoreboard.ScoreboardManager;
 import org.bukkit.Location;
 import tk.shanebee.hg.Status;
 
@@ -17,7 +19,7 @@ public class GameArenaData extends Data {
     final int minPlayers;
     final int maxPlayers;
     final List<Location> spawns;
-    final Board board;
+    final ScoreboardManager board;
     private final int roamTime;
     int cost;
     Location exit;
@@ -35,7 +37,7 @@ public class GameArenaData extends Data {
         this.roamTime = roamTime;
         this.cost = cost;
         this.spawns = new ArrayList<>();
-        this.board = new Board(game);
+        this.board = new ScoreboardManager(game);
     }
 
     /**
@@ -43,7 +45,7 @@ public class GameArenaData extends Data {
      *
      * @return Board of game
      */
-    public Board getBoard() {
+    public ScoreboardManager getBoard() {
         return board;
     }
 

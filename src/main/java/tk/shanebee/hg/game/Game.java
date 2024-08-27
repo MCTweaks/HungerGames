@@ -1,5 +1,6 @@
 package tk.shanebee.hg.game;
 
+import net.hetmastertje.scoreboard.ScoreboardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
@@ -30,16 +31,16 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class Game {
 
-    final Main plugin;
-    final Language lang;
+    public final Main plugin;
+    public final Language lang;
     // Data Objects
-    final GameArenaData gameArenaData;
-    final GameBarData bar;
-    final GamePlayerData gamePlayerData;
-    final GameBlockData gameBlockData;
-    final GameItemData gameItemData;
-    final GameCommandData gameCommandData;
-    final GameBorderData gameBorderData;
+    public final GameArenaData gameArenaData;
+    public final GameBarData bar;
+    public final GamePlayerData gamePlayerData;
+    public final GameBlockData gameBlockData;
+    public final GameItemData gameItemData;
+    public final GameCommandData gameCommandData;
+    public final GameBorderData gameBorderData;
     private final MobManager mobManager;
     private final PlayerManager playerManager;
     private final ChestDropManager chestDropManager;
@@ -287,6 +288,9 @@ public class Game {
         cancelTasks();
         for (UUID uuid : gamePlayerData.players) {
             Player player = Bukkit.getPlayer(uuid);
+            //  Make sure to remove the player from the loop
+            ScoreboardManager.removePlayer(player);
+
             if (player != null) {
                 PlayerData playerData = playerManager.getPlayerData(uuid);
                 assert playerData != null;
