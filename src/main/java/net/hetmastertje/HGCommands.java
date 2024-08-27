@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static org.bukkit.Bukkit.getServer;
-
+/**
+ * HungerGames SubCommands Register
+ */
 public class HGCommands {
     final Main plugin;
 
