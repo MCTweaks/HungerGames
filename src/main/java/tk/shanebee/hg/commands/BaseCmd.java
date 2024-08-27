@@ -2,7 +2,7 @@ package tk.shanebee.hg.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.ArenaConfig;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.managers.Manager;
@@ -11,7 +11,7 @@ import tk.shanebee.hg.util.Util;
 
 public abstract class BaseCmd {
 
-    final HG plugin;
+    final Main plugin;
     public CommandSender sender;
     public String[] args;
     public String cmdName;
@@ -27,10 +27,10 @@ public abstract class BaseCmd {
     ArenaConfig arenaConfig;
 
     public BaseCmd() {
-        this.plugin = HG.getPlugin();
+        this.plugin = Main.getPlugin();
     }
 
-    public void processCmd(HG plugin, CommandSender sender, String[] args) {
+    public void processCmd(Main plugin, CommandSender sender, String[] args) {
         this.sender = sender;
         this.args = args;
         this.playerManager = plugin.getPlayerManager();

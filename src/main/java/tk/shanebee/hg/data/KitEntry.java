@@ -3,7 +3,7 @@ package tk.shanebee.hg.data;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.util.ArrayList;
@@ -213,7 +213,7 @@ public class KitEntry {
             player.removePotionEffect(effect.getType());
         }
         player.addPotionEffects(potions);
-        Objects.requireNonNull(HG.getPlugin().getPlayerManager().getPlayerData(player.getUniqueId())).getGame().getGamePlayerData().freeze(player);
+        Objects.requireNonNull(Main.getPlugin().getPlayerManager().getPlayerData(player.getUniqueId())).getGame().getGamePlayerData().freeze(player);
         player.updateInventory();
     }
 

@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.ChestDrop;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.managers.ChestDropManager;
@@ -21,9 +21,9 @@ import tk.shanebee.hg.managers.ChestDropManager;
  * Manager for chest drops
  */
 public class ChestDropListener implements Listener {
-    private final HG plugin;
+    private final Main plugin;
 
-    public ChestDropListener(HG plugin) {
+    public ChestDropListener(Main plugin) {
         this.plugin = plugin;
     }
 

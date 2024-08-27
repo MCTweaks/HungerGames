@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.data.PlayerSession;
 import tk.shanebee.hg.game.Game;
@@ -20,10 +20,10 @@ import tk.shanebee.hg.util.Util;
  */
 public class WandListener implements Listener {
 
-    private final HG plugin;
+    private final Main plugin;
     private final Language lang;
 
-    public WandListener(HG instance) {
+    public WandListener(Main instance) {
         plugin = instance;
         lang = plugin.getLang();
     }

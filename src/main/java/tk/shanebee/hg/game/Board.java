@@ -9,7 +9,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.util.Util;
@@ -29,7 +29,7 @@ public class Board {
     }
 
     private final Game game;
-    private final HG plugin;
+    private final Main plugin;
     private final Scoreboard scoreboard;
     private final Objective board;
     private final Team[] lines = new Team[15];

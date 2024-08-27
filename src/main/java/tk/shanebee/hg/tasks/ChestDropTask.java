@@ -4,7 +4,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.ChestDrop;
 import tk.shanebee.hg.game.Game;
 
@@ -37,7 +37,7 @@ public class ChestDropTask implements Runnable {
         newBlock.setType(chestDrop.getMaterial());
         chestDrop.setChestBlock(newBlock);
         if (blocksToGo > 0) {
-            int newTaskId = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), new ChestDropTask(game, chestDrop, newBlock, blocksToGo), 20);
+            int newTaskId = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new ChestDropTask(game, chestDrop, newBlock, blocksToGo), 20);
             chestDrop.setCurDropTaskId(newTaskId);
         } else {
             w.spawnEntity(blockLoc, EntityType.FIREWORK, true);

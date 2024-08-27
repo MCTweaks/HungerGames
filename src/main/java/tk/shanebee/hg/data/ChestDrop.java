@@ -7,7 +7,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.Inventory;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.game.Bound;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.tasks.StartChestDropTask;
@@ -27,8 +27,8 @@ public class ChestDrop {
         this.game = game;
         chestInv = Bukkit.createInventory(null, 27, "Loot Crate");
         findLocation();
-        startTaskId = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), new StartChestDropTask(game, this), Config.randomChestInterval);
-        HG.getPlugin().getManager().fillChest(chestInv, game, true);
+        startTaskId = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new StartChestDropTask(game, this), Config.randomChestInterval);
+        Main.getPlugin().getManager().fillChest(chestInv, game, true);
     }
 
     private void findLocation() {

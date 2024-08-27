@@ -1,6 +1,7 @@
 package tk.shanebee.hg;
 
 import io.papermc.lib.PaperLib;
+import net.hetmastertje.HGCommands;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -23,13 +24,15 @@ import java.util.*;
 /**
  * <b>Main class for HungerGames</b>
  */
-public class HG extends JavaPlugin {
+public class Main extends JavaPlugin {
 
     private static final Party party = new NoParty();
     //Instances
-    private static HG plugin;
+    private static Main plugin;
     //Maps
-    private Map<String, BaseCmd> cmds;
+    // Deprecated
+    // private Map<String, BaseCmd> cmds;
+    private HGCommands hgCommands;
     private Map<UUID, PlayerSession> playerSession;
     private Map<ItemStack, Integer> itemRarityMap;
     private Map<ItemStack, Integer> itemCostMap;
@@ -50,6 +53,7 @@ public class HG extends JavaPlugin {
     //Mobs
     private MobConfig mobConfig;
 
+
     //NMS Nbt
     private NBTApi nbtApi;
 
@@ -58,7 +62,7 @@ public class HG extends JavaPlugin {
      *
      * @return This plugin
      */
-    public static HG getPlugin() {
+    public static Main getPlugin() {
         return plugin;
     }
 
@@ -83,7 +87,8 @@ public class HG extends JavaPlugin {
         plugin = this;
 
         if (load) {
-            cmds = new HashMap<>();
+            hgCommands = new HGCommands();
+            hgCommands.cmds = new HashMap<>();
         }
         games = new ArrayList<>();
         playerSession = new HashMap<>();
@@ -181,7 +186,7 @@ public class HG extends JavaPlugin {
         if (reload) {
             loadPlugin(false);
         } else {
-            cmds = null;
+            hgCommands = null;
         }
     }
 
@@ -194,48 +199,7 @@ public class HG extends JavaPlugin {
     }
 
     private void loadCmds() {
-        cmds.put("team", new TeamCmd());
-        cmds.put("addspawn", new AddSpawnCmd());
-        cmds.put("create", new CreateCmd());
-        cmds.put("join", new JoinCmd());
-        cmds.put("leave", new LeaveCmd());
-        cmds.put("reload", new ReloadCmd());
-        cmds.put("setlobbywall", new SetLobbyWallCmd());
-        cmds.put("wand", new WandCmd());
-        cmds.put("kit", new KitCmd());
-        cmds.put("debug", new DebugCmd());
-        cmds.put("list", new ListCmd());
-        cmds.put("listgames", new ListGamesCmd());
-        cmds.put("forcestart", new StartCmd());
-        cmds.put("stop", new StopCmd());
-        cmds.put("toggle", new ToggleCmd());
-        cmds.put("setexit", new SetExitCmd());
-        cmds.put("delete", new DeleteCmd());
-        cmds.put("chestrefill", new ChestRefillCmd());
-        cmds.put("chestrefillnow", new ChestRefillNowCmd());
-        cmds.put("bordersize", new BorderSizeCmd());
-        cmds.put("bordercenter", new BorderCenterCmd());
-        cmds.put("bordertimer", new BorderTimerCmd());
-        if (Config.spectateEnabled) {
-            cmds.put("spectate", new SpectateCmd());
-        }
-        if (nbtApi != null) {
-            cmds.put("nbt", new NBTCmd());
-        }
-
-        ArrayList<String> cArray = new ArrayList<>();
-        cArray.add("join");
-        cArray.add("leave");
-        cArray.add("kit");
-        cArray.add("listgames");
-        cArray.add("list");
-
-        for (String bc : cmds.keySet()) {
-            getServer().getPluginManager().addPermission(new Permission("hg." + bc));
-            if (cArray.contains(bc))
-                getServer().getPluginManager().getPermission("hg." + bc).setDefault(PermissionDefault.TRUE);
-
-        }
+        hgCommands.register();
     }
 
     /**
@@ -361,8 +325,12 @@ public class HG extends JavaPlugin {
      *
      * @return Map of commands
      */
+//    public Map<String, BaseCmd> getCommands() {
+//        return this.cmds;
+//    }
+
     public Map<String, BaseCmd> getCommands() {
-        return this.cmds;
+        return hgCommands.cmds;
     }
 
     /**

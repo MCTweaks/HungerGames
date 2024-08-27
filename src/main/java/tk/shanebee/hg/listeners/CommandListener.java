@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.commands.BaseCmd;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.PlayerData;
@@ -25,10 +25,10 @@ import java.util.*;
 @SuppressWarnings("NullableProblems")
 public class CommandListener implements CommandExecutor, TabCompleter {
 
-    private final HG plugin;
+    private final Main plugin;
     private final PlayerManager playerManager;
 
-    public CommandListener(HG plugin) {
+    public CommandListener(Main plugin) {
         this.plugin = plugin;
         this.playerManager = plugin.getPlayerManager();
     }

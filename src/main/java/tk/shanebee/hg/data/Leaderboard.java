@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.*;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Leaderboard {
 
-    private final HG plugin;
+    private final Main plugin;
     private final Language lang;
     private final Map<String, Integer> wins;
     private final Map<String, Integer> kills;
@@ -34,7 +34,7 @@ public class Leaderboard {
     private FileConfiguration leaderboardConfig;
     private File config_file;
 
-    public Leaderboard(HG plugin) {
+    public Leaderboard(Main plugin) {
         this.plugin = plugin;
         this.lang = plugin.getLang();
         wins = new TreeMap<>();

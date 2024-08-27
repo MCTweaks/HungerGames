@@ -2,7 +2,7 @@ package tk.shanebee.hg.managers;
 
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.PlayerData;
 import tk.shanebee.hg.game.Game;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 /**
  * General player manager
- * <p>You can get an instance of this from <b>{@link HG#getPlayerManager()}</b></p>
+ * <p>You can get an instance of this from <b>{@link Main#getPlayerManager()}</b></p>
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PlayerManager {

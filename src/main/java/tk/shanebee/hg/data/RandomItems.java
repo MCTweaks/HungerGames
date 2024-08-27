@@ -3,7 +3,7 @@ package tk.shanebee.hg.data;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.io.File;
@@ -15,12 +15,12 @@ import java.util.Map;
  */
 public class RandomItems {
 
-    private final HG plugin;
+    private final Main plugin;
     public int size = 0;
     private FileConfiguration item = null;
     private File customConfigFile = null;
 
-    public RandomItems(HG plugin) {
+    public RandomItems(Main plugin) {
         this.plugin = plugin;
         reloadCustomConfig();
         Util.log("Loading random items...");

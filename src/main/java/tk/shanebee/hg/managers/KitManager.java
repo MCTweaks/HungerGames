@@ -2,7 +2,7 @@ package tk.shanebee.hg.managers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.KitEntry;
 import tk.shanebee.hg.util.Util;
 
@@ -26,10 +26,10 @@ public class KitManager {
      */
     public void setKit(Player player, String kitName) {
         if (!kititems.containsKey(kitName)) {
-            Util.scm(player, ChatColor.RED + kitName + HG.getPlugin().getLang().kit_doesnt_exist);
+            Util.scm(player, ChatColor.RED + kitName + Main.getPlugin().getLang().kit_doesnt_exist);
             Util.scm(player, "&9&lKits:&b" + getKitListString());
         } else if (!kititems.get(kitName).hasKitPermission(player))
-            Util.scm(player, HG.getPlugin().getLang().kit_no_perm);
+            Util.scm(player, Main.getPlugin().getLang().kit_no_perm);
         else {
             kititems.get(kitName).setInventoryContent(player);
         }

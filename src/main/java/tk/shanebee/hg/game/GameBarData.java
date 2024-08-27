@@ -5,7 +5,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ public class GameBarData extends Data {
 
     protected GameBarData(Game game) {
         super(game);
-        this.title = HG.getPlugin().getLang().bossbar;
+        this.title = Main.getPlugin().getLang().bossbar;
     }
 
     /**

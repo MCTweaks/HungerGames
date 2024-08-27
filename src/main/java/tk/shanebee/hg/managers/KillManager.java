@@ -6,7 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Language;
 
 /**
@@ -14,7 +14,7 @@ import tk.shanebee.hg.data.Language;
  */
 public class KillManager {
 
-    private final Language lang = HG.getPlugin().getLang();
+    private final Language lang = Main.getPlugin().getLang();
 
     /**
      * Get the death message when a player dies of natural causes (non-entity involved deaths)

@@ -9,7 +9,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.util.ArrayList;
@@ -248,7 +248,7 @@ public class MobEntry {
                         mob.addPotionEffect(effect);
                     }
                     if (deathMessage != null)
-                        mob.setMetadata("death-message", new FixedMetadataValue(HG.getPlugin(), deathMessage));
+                        mob.setMetadata("death-message", new FixedMetadataValue(Main.getPlugin(), deathMessage));
                 }
             });
     }

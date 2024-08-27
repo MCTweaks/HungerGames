@@ -10,7 +10,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.game.Bound;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.game.GameArenaData;
@@ -30,11 +30,11 @@ import java.util.Map;
  */
 public class ArenaConfig {
 
-    private final HG plugin;
+    private final Main plugin;
     private FileConfiguration arenadat = null;
     private File customConfigFile = null;
 
-    public ArenaConfig(HG plugin) {
+    public ArenaConfig(Main plugin) {
         this.plugin = plugin;
         reloadCustomConfig();
         load();
@@ -177,8 +177,8 @@ public class ArenaConfig {
 
                     if (!arenadat.getStringList(path + ".items").isEmpty()) {
                         List<String> itemList = arenadat.getStringList(path + ".items");
-                        Map<ItemStack, Integer> itemCostMap = HG.getPlugin().getItemCostMap();
-                        Map<ItemStack, Integer> itemRarityMap = HG.getPlugin().getItemRarityMap();
+                        Map<ItemStack, Integer> itemCostMap = Main.getPlugin().getItemCostMap();
+                        Map<ItemStack, Integer> itemRarityMap = Main.getPlugin().getItemRarityMap();
                         plugin.getRandomItems().loadItems(itemList, itemCostMap, itemRarityMap);
                         game.getGameItemData().setItemCostMap(itemCostMap);
                         game.getGameItemData().setItemRarityMap(itemRarityMap);
@@ -186,8 +186,8 @@ public class ArenaConfig {
                     }
                     if (!arenadat.getStringList(path + ".bonus").isEmpty()) {
                         List<String> itemList = arenadat.getStringList(path + ".bonus");
-                        Map<ItemStack, Integer> itemCostMap = HG.getPlugin().getBonusCostMap();
-                        Map<ItemStack, Integer> itemRarityMap = HG.getPlugin().getBonusRarityMap();
+                        Map<ItemStack, Integer> itemCostMap = Main.getPlugin().getBonusCostMap();
+                        Map<ItemStack, Integer> itemRarityMap = Main.getPlugin().getBonusRarityMap();
                         plugin.getRandomItems().loadItems(itemList, itemCostMap, itemRarityMap);
                         game.getGameItemData().setBonusCostMap(itemCostMap);
                         game.getGameItemData().setBonusRarityMap(itemRarityMap);

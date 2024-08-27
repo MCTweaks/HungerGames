@@ -1,6 +1,6 @@
 package tk.shanebee.hg.game;
 
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Language;
 
 /**
@@ -9,7 +9,7 @@ import tk.shanebee.hg.data.Language;
 public abstract class Data {
 
     final Game game;
-    final HG plugin;
+    final Main plugin;
     final Language lang;
 
     protected Data(Game game) {
@@ -30,9 +30,9 @@ public abstract class Data {
     /**
      * Quick method to access the main plugin
      *
-     * @return Instance of {@link HG plugin}
+     * @return Instance of {@link Main plugin}
      */
-    public HG getPlugin() {
+    public Main getPlugin() {
         return plugin;
     }
 

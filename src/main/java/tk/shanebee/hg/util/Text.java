@@ -6,7 +6,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class Text {
      * @param msgs   Messages to send
      */
     public static void sendMessage(CommandSender sender, BaseComponent... msgs) {
-        TextComponent prefix = new TextComponent(Util.getColString(HG.getPlugin().getLang().prefix));
+        TextComponent prefix = new TextComponent(Util.getColString(Main.getPlugin().getLang().prefix));
         BaseComponent[] comps = new BaseComponent[msgs.length + 1];
         comps[0] = prefix;
         System.arraycopy(msgs, 0, comps, 1, msgs.length);

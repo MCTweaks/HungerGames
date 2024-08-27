@@ -2,7 +2,7 @@ package tk.shanebee.hg.commands;
 
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Text;
 import tk.shanebee.hg.util.Util;
 
@@ -23,7 +23,7 @@ public class ReloadCmd extends BaseCmd {
         } else if ((args.length == 2 && args[1].equalsIgnoreCase("confirm")) || gamesNotRunning()) {
             long start = System.currentTimeMillis();
             Util.scm(sender, prefix + "&6Reloading plugin... observe console for errors!");
-            HG.getPlugin().reloadPlugin();
+            Main.getPlugin().reloadPlugin();
             Util.scm(sender, prefix + "&7Reloaded &asuccessfully &7in &b" +
                     (System.currentTimeMillis() - start) + "&7 milliseconds");
         }

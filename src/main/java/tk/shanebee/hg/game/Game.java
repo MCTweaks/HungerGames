@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
@@ -30,7 +30,7 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class Game {
 
-    final HG plugin;
+    final Main plugin;
     final Language lang;
     // Data Objects
     final GameArenaData gameArenaData;
@@ -93,10 +93,10 @@ public class Game {
      * @param cost       Cost of this game
      */
     public Game(String name, Bound bound, int timer, int minPlayers, int maxPlayers, int roam, int cost) {
-        this.plugin = HG.getPlugin();
+        this.plugin = Main.getPlugin();
         this.gameArenaData = new GameArenaData(this, name, bound, timer, minPlayers, maxPlayers, roam, cost);
         this.gameArenaData.status = Status.NOTREADY;
-        this.playerManager = HG.getPlugin().getPlayerManager();
+        this.playerManager = Main.getPlugin().getPlayerManager();
         this.lang = plugin.getLang();
         this.kitManager = plugin.getKitManager();
         this.mobManager = new MobManager(this);

@@ -1,7 +1,7 @@
 package tk.shanebee.hg.game;
 
 import org.bukkit.inventory.ItemStack;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 
 import java.util.Map;
 
@@ -49,8 +49,8 @@ public class GameItemData extends Data {
      * Reset the items for this game to the plugin's default items list
      */
     public void resetItemsDefault() {
-        this.itemCostMap = HG.getPlugin().getItemCostMap();
-        this.itemRarityMap = HG.getPlugin().getItemRarityMap();
+        this.itemCostMap = Main.getPlugin().getItemCostMap();
+        this.itemRarityMap = Main.getPlugin().getItemRarityMap();
     }
 
 
@@ -108,8 +108,8 @@ public class GameItemData extends Data {
      * Reset the bonus items for this game to the plugin's default bonus items list
      */
     public void resetBonusItemsDefault() {
-        this.bonusCostMap = HG.getPlugin().getBonusCostMap();
-        this.bonusRarityMap = HG.getPlugin().getBonusRarityMap();
+        this.bonusCostMap = Main.getPlugin().getBonusCostMap();
+        this.bonusRarityMap = Main.getPlugin().getBonusRarityMap();
     }
 
 }

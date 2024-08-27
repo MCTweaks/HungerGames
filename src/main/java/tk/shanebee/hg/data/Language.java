@@ -2,7 +2,7 @@ package tk.shanebee.hg.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.io.File;
@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
  */
 public class Language {
 
-    private final HG plugin;
+    private final Main plugin;
     public String prefix;
     public String player_joined_game;
     public String player_left_game;
@@ -185,7 +185,7 @@ public class Language {
     private File customLangFile = null;
 
 
-    public Language(HG plugin) {
+    public Language(Main plugin) {
         this.plugin = plugin;
         loadLangFile();
     }

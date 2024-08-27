@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.managers.PlayerManager;
 import tk.shanebee.hg.util.Util;
@@ -21,7 +21,7 @@ public class CancelListener implements Listener {
 
     private final PlayerManager playerManager;
 
-    public CancelListener(HG instance) {
+    public CancelListener(Main instance) {
         this.playerManager = instance.getPlayerManager();
     }
 
@@ -36,18 +36,18 @@ public class CancelListener implements Listener {
                 if (st.length >= 2 && st[1].equalsIgnoreCase("kit") && Objects.requireNonNull(playerManager.getData(uuid)).getGame().getGameArenaData().getStatus() == Status.RUNNING) {
                     event.setMessage("/");
                     event.setCancelled(true);
-                    Util.scm(player, HG.getPlugin().getLang().cmd_handler_nokit);
+                    Util.scm(player, Main.getPlugin().getLang().cmd_handler_nokit);
                 }
                 return;
             }
             event.setMessage("/");
             event.setCancelled(true);
-            Util.scm(player, HG.getPlugin().getLang().cmd_handler_nocmd);
+            Util.scm(player, Main.getPlugin().getLang().cmd_handler_nocmd);
         } else if ("/tp".equalsIgnoreCase(st[0]) && st.length >= 2) {
             Player p = Bukkit.getServer().getPlayer(st[1]);
             if (p != null) {
                 if (playerManager.hasPlayerData(uuid)) {
-                    Util.scm(player, HG.getPlugin().getLang().cmd_handler_playing);
+                    Util.scm(player, Main.getPlugin().getLang().cmd_handler_playing);
                     event.setMessage("/");
                     event.setCancelled(true);
                 }

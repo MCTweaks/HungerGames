@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.ChestDrop;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
@@ -31,15 +31,15 @@ public class StartChestDropTask implements Runnable {
         for (UUID u : game.getGamePlayerData().getPlayers()) {
             Player p = Bukkit.getPlayer(u);
             if (p != null) {
-                Util.scm(p, HG.getPlugin().getLang().chest_drop_1);
-                Util.scm(p, HG.getPlugin().getLang().chest_drop_2
+                Util.scm(p, Main.getPlugin().getLang().chest_drop_1);
+                Util.scm(p, Main.getPlugin().getLang().chest_drop_2
                         .replace("<x>", String.valueOf(x))
                         .replace("<y>", String.valueOf(y))
                         .replace("<z>", String.valueOf(z)));
-                Util.scm(p, HG.getPlugin().getLang().chest_drop_1);
+                Util.scm(p, Main.getPlugin().getLang().chest_drop_1);
             }
         }
-        drop.setCurDropTaskId(Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), new ChestDropTask(game, drop, w.getBlockAt(dropLocation.add(0, 10, 0)), 10), 600));
+        drop.setCurDropTaskId(Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new ChestDropTask(game, drop, w.getBlockAt(dropLocation.add(0, 10, 0)), 10), 600));
     }
 
 }

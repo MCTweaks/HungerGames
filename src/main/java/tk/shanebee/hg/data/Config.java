@@ -3,7 +3,7 @@ package tk.shanebee.hg.data;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
 
@@ -91,11 +91,11 @@ public class Config {
     public static boolean mcmmoUseSkills;
     public static boolean mcmmoGainExp;
 
-    private final HG plugin;
+    private final Main plugin;
     private File configFile;
     private FileConfiguration config;
 
-    public Config(HG plugin) {
+    public Config(Main plugin) {
         this.plugin = plugin;
         loadConfigFile();
     }

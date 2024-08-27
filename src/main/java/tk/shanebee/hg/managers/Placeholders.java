@@ -3,7 +3,7 @@ package tk.shanebee.hg.managers;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.data.Leaderboard;
 
@@ -12,11 +12,11 @@ import tk.shanebee.hg.data.Leaderboard;
  */
 public class Placeholders extends PlaceholderExpansion {
 
-    private final HG plugin;
+    private final Main plugin;
     private final Leaderboard leaderboard;
     private final Language lang;
 
-    public Placeholders(HG plugin) {
+    public Placeholders(Main plugin) {
         this.plugin = plugin;
         this.leaderboard = plugin.getLeaderboard();
         this.lang = plugin.getLang();
@@ -93,15 +93,15 @@ public class Placeholders extends PlaceholderExpansion {
                             return getStatsPlayer(identifier, player);
                 }
             case "status":
-                return HG.getPlugin().getManager().getGame(id[1]).getGameArenaData().getStatus().getName();
+                return Main.getPlugin().getManager().getGame(id[1]).getGameArenaData().getStatus().getName();
             case "cost":
-                return String.valueOf(HG.getPlugin().getManager().getGame(id[1]).getGameArenaData().getCost());
+                return String.valueOf(Main.getPlugin().getManager().getGame(id[1]).getGameArenaData().getCost());
             case "playerscurrent":
-                return String.valueOf(HG.getPlugin().getManager().getGame(id[1]).getGamePlayerData().getPlayers().size());
+                return String.valueOf(Main.getPlugin().getManager().getGame(id[1]).getGamePlayerData().getPlayers().size());
             case "playersmax":
-                return String.valueOf(HG.getPlugin().getManager().getGame(id[1]).getGameArenaData().getMaxPlayers());
+                return String.valueOf(Main.getPlugin().getManager().getGame(id[1]).getGameArenaData().getMaxPlayers());
             case "playersmin":
-                return String.valueOf(HG.getPlugin().getManager().getGame(id[1]).getGameArenaData().getMinPlayers());
+                return String.valueOf(Main.getPlugin().getManager().getGame(id[1]).getGameArenaData().getMinPlayers());
         }
         return null;
     }

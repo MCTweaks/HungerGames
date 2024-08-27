@@ -2,7 +2,7 @@ package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.block.BlockState;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.ItemFrameData;
@@ -30,7 +30,7 @@ public class Rollback implements Runnable {
         game.getGameArenaData().setStatus(Status.ROLLBACK);
         this.session = gameBlockData.getBlocks().iterator();
         this.itemFrameDataIterator = gameBlockData.getItemFrameData().iterator();
-        timerID = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), this, 2);
+        timerID = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), this, 2);
     }
 
     public void run() {
@@ -44,7 +44,7 @@ public class Rollback implements Runnable {
             i++;
         }
         if (session.hasNext()) {
-            timerID = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), this, 2);
+            timerID = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), this, 2);
             return;
         }
 

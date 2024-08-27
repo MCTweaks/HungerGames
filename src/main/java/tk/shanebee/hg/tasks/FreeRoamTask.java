@@ -2,7 +2,7 @@ package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
@@ -19,7 +19,7 @@ public class FreeRoamTask implements Runnable {
         this.game = game;
         this.roamTime = game.getGameArenaData().getRoamTime();
 
-        Language lang = HG.getPlugin().getLang();
+        Language lang = Main.getPlugin().getLang();
 
         for (UUID u : game.getGamePlayerData().getPlayers()) {
             Player player = Bukkit.getPlayer(u);
@@ -33,13 +33,13 @@ public class FreeRoamTask implements Runnable {
                 game.getGamePlayerData().unFreeze(player);
             }
         }
-        this.id = Bukkit.getScheduler().scheduleSyncDelayedTask(HG.getPlugin(), this, roamTime * 20L);
+        this.id = Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), this, roamTime * 20L);
     }
 
     @Override
     public void run() {
         if (roamTime > 0) {
-            game.getGamePlayerData().msgAll(HG.getPlugin().getLang().roam_finished);
+            game.getGamePlayerData().msgAll(Main.getPlugin().getLang().roam_finished);
         }
         game.startGame();
     }

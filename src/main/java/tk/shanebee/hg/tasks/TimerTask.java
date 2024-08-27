@@ -1,7 +1,7 @@
 package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
@@ -27,7 +27,7 @@ public class TimerTask implements Runnable {
     public TimerTask(Game g, int time) {
         this.remainingtime = time;
         this.game = g;
-        HG plugin = game.getGameArenaData().getPlugin();
+        Main plugin = game.getGameArenaData().getPlugin();
         this.lang = plugin.getLang();
         this.teleportTimer = Config.teleportEndTime;
         this.borderCountdownStart = g.getGameBorderData().getBorderTimer().get(0);

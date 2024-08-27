@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.Nullable;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.KitEntry;
 import tk.shanebee.hg.util.NBTApi;
 import tk.shanebee.hg.util.PotionEffectUtils;
@@ -31,10 +31,10 @@ import java.util.Arrays;
  */
 public class ItemStackManager {
 
-    private final HG plugin;
+    private final Main plugin;
     private final NBTApi nbtApi;
 
-    public ItemStackManager(HG p) {
+    public ItemStackManager(Main p) {
         this.plugin = p;
         this.nbtApi = p.getNbtApi();
         setKits();

@@ -7,7 +7,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.data.MobEntry;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.PotionEffectUtils;
@@ -15,7 +15,6 @@ import tk.shanebee.hg.util.PotionEffectUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Manager for mob spawning in games
@@ -31,7 +30,7 @@ public class MobManager {
 
     public MobManager(Game game) {
         this.game = game;
-        this.config = HG.getPlugin().getMobConfig().getMobs();
+        this.config = Main.getPlugin().getMobConfig().getMobs();
         loadMobs();
     }
 
@@ -107,7 +106,7 @@ public class MobManager {
     }
 
     private ItemStack getItemStack(String key, String section) {
-        return HG.getPlugin().getItemStackManager().getItem(getString(key, section), false);
+        return Main.getPlugin().getItemStackManager().getItem(getString(key, section), false);
     }
 
     /**

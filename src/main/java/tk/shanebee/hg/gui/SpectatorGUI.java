@@ -13,7 +13,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.NotNull;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 
@@ -28,7 +28,7 @@ public class SpectatorGUI implements InventoryHolder, Listener {
     public SpectatorGUI(Game game) {
         this.game = game;
         inv = Bukkit.createInventory(this, 9 * Math.min((game.getGameArenaData().getMaxPlayers() / 9) + 1, 6), game.getGameArenaData().getName());
-        Bukkit.getPluginManager().registerEvents(this, HG.getPlugin());
+        Bukkit.getPluginManager().registerEvents(this, Main.getPlugin());
     }
 
     @NotNull
@@ -54,7 +54,7 @@ public class SpectatorGUI implements InventoryHolder, Listener {
         assert meta != null;
         meta.setOwningPlayer(player);
         meta.setDisplayName(player.getName());
-        String[] lore = Util.getColString(HG.getPlugin().getLang().spectator_compass_head_lore).split(";");
+        String[] lore = Util.getColString(Main.getPlugin().getLang().spectator_compass_head_lore).split(";");
         meta.setLore(Arrays.asList(lore));
         head.setItemMeta(meta);
         return head;

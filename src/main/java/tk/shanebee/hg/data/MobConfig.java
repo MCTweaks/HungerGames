@@ -2,7 +2,7 @@ package tk.shanebee.hg.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.util.Util;
 
 import java.io.File;
@@ -12,11 +12,11 @@ import java.io.File;
  */
 public class MobConfig {
 
-    private final HG plugin;
+    private final Main plugin;
     private FileConfiguration mobs = null;
     private File mobFile = null;
 
-    public MobConfig(HG plugin) {
+    public MobConfig(Main plugin) {
         this.plugin = plugin;
         loadMobFile();
     }

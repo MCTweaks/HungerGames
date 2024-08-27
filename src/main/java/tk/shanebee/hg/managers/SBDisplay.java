@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 
@@ -25,9 +25,9 @@ public class SBDisplay {
         this.manager = Bukkit.getScoreboardManager();
         assert manager != null;
         this.board = manager.getNewScoreboard();
-        this.ob = board.registerNewObjective(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().players_alive), "dummy", "arena" + game.getGameArenaData().getName());
+        this.ob = board.registerNewObjective(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getLang().players_alive), "dummy", "arena" + game.getGameArenaData().getName());
         this.ob.setDisplaySlot(DisplaySlot.SIDEBAR);
-        this.ob.setDisplayName(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().scoreboard_title));
+        this.ob.setDisplayName(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getLang().scoreboard_title));
         this.game = game;
     }
 
@@ -41,18 +41,18 @@ public class SBDisplay {
 
 		 */
         ob.unregister();
-        this.ob = board.registerNewObjective(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().players_alive), "dummy", "arena" + game.getGameArenaData().getName());
+        this.ob = board.registerNewObjective(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getLang().players_alive), "dummy", "arena" + game.getGameArenaData().getName());
         this.ob.setDisplaySlot(DisplaySlot.SIDEBAR);
-        this.ob.setDisplayName(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().scoreboard_title));
-        String alive = "  " + HG.getPlugin().getLang().players_alive_num.replace("<num>", String.valueOf(game.getGamePlayerData().getPlayers().size()));
+        this.ob.setDisplayName(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getLang().scoreboard_title));
+        String alive = "  " + Main.getPlugin().getLang().players_alive_num.replace("<num>", String.valueOf(game.getGamePlayerData().getPlayers().size()));
 
         Score space1 = ob.getScore(" ");
         Score space2 = ob.getScore("  ");
         Score space3 = ob.getScore("   ");
-        Score arena1 = ob.getScore(Util.getColString(HG.getPlugin().getLang().scoreboard_arena));
+        Score arena1 = ob.getScore(Util.getColString(Main.getPlugin().getLang().scoreboard_arena));
         Score arena2 = ob.getScore(Util.getColString("  &e" + game.getGameArenaData().getName()));
 
-        Score alive1 = ob.getScore(Util.getColString(HG.getPlugin().getLang().players_alive));
+        Score alive1 = ob.getScore(Util.getColString(Main.getPlugin().getLang().players_alive));
         Score alive2 = ob.getScore(Util.getColString(alive));
 
         space1.setScore(6);
@@ -67,7 +67,7 @@ public class SBDisplay {
     }
 
     public void resetAlive() {
-        board.resetScores(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().players_alive));
+        board.resetScores(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getLang().players_alive));
         score.clear();
     }
 

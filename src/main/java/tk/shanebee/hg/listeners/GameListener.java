@@ -20,7 +20,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
-import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Main;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
@@ -48,7 +48,7 @@ import java.util.UUID;
  */
 public class GameListener implements Listener {
 
-    private final HG plugin;
+    private final Main plugin;
     private final Language lang;
     private final String tsn = ChatColor.GOLD + "TrackingStick " + ChatColor.GREEN + "Uses: ";
     private final ItemStack trackingStick;
@@ -57,7 +57,7 @@ public class GameListener implements Listener {
     private final PlayerManager playerManager;
     private final Leaderboard leaderboard;
 
-    public GameListener(HG plugin) {
+    public GameListener(Main plugin) {
         this.plugin = plugin;
         this.lang = plugin.getLang();
         this.gameManager = plugin.getManager();
@@ -346,7 +346,7 @@ public class GameListener implements Listener {
         GameBlockData gameBlockData = game.getGameBlockData();
         if (!gameBlockData.isLoggedChest(block.getLocation())) {
             Inventory inv = ((Container) block.getState()).getInventory();
-            HG.getPlugin().getManager().fillChest(inv, game, event.isBonus());
+            Main.getPlugin().getManager().fillChest(inv, game, event.isBonus());
             gameBlockData.addGameChest(block.getLocation());
         }
     }
@@ -426,15 +426,15 @@ public class GameListener implements Listener {
                     } else {
                         if (player.getInventory().getItemInMainHand().getType() == Material.AIR) {
                             // Process this after event has finished running to prevent double click issues
-                            if (HG.getParty().hasParty(player)) {
+                            if (Main.getParty().hasParty(player)) {
                                 //player is in party
-                                if (HG.getParty().isOwner(player) && ((game.getGamePlayerData().getPlayers().size() + HG.getParty().partySize(player)) <= game.getGameArenaData().getMaxPlayers())) {  //player is owner join party
+                                if (Main.getParty().isOwner(player) && ((game.getGamePlayerData().getPlayers().size() + Main.getParty().partySize(player)) <= game.getGameArenaData().getMaxPlayers())) {  //player is owner join party
                                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                                        for (Player p : HG.getParty().getMembers(player)) {
+                                        for (Player p : Main.getParty().getMembers(player)) {
                                             game.getGamePlayerData().join(p);
                                         }
                                     });
-                                } else if (!HG.getParty().isOwner(player)) {
+                                } else if (!Main.getParty().isOwner(player)) {
                                     player.sendMessage("You are in a party but not the leader, unable to join game");
                                 }
                             } else
