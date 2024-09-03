@@ -2,6 +2,7 @@ package tk.shanebee.hg;
 
 import io.papermc.lib.PaperLib;
 import net.hetmastertje.HGCommands;
+import net.hetmastertje.data.GameManagerConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
     private Map<ItemStack, Integer> bonusCostMap;
     //Lists
     private List<Game> games;
+    private GameManagerConfig gameManagerConfig;
     private Config config;
     private Manager manager;
     private PlayerManager playerManager;
@@ -93,6 +95,7 @@ public class Main extends JavaPlugin {
         bonusCostMap = new HashMap<>();
         bonusRarityMap = new HashMap<>();
 
+        gameManagerConfig = new GameManagerConfig(this);
         config = new Config(this);
         Bukkit.getLogger().info("Loading HungerGames by JT122406");
         PaperLib.suggestPaper(this);
@@ -145,6 +148,7 @@ public class Main extends JavaPlugin {
         itemRarityMap = null;
         itemCostMap = null;
         plugin = null;
+        gameManagerConfig = null;
         config = null;
         nbtApi = null;
         lang = null;
@@ -315,6 +319,15 @@ public class Main extends JavaPlugin {
      */
     public Language getLang() {
         return this.lang;
+    }
+
+    /**
+     * Get an instance of {@link Config}
+     *
+     * @return GameManager Config file
+     */
+    public GameManagerConfig getGameManagerConfig() {
+        return gameManagerConfig;
     }
 
     /**
